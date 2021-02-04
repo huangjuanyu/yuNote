@@ -294,3 +294,36 @@
     }
   }
 }
+
+// pagination
+.pagination{
+  .pagination-pager{
+    display: inline-block;
+    margin: 0;
+  }
+  .pagination-item{
+    display: inline-block;
+    padding: 0 4px;
+    font-size: 13px;
+    min-width: 35.5px;
+    height: 28px;
+    line-height: 28px;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 0 5px;
+    background-color: #f4f4f5;
+    color: #606266;
+    min-width: 30px;
+    border-radius: 2px;
+    a{
+      color: #606266;
+    }
+    .pagination-item-current{
+        color: $link-color;
+    }
+    &.previous-disabled, &.next-disabled{
+      color: $grey-color;
+      cursor: not-allowed;
+    }
+  }
+}
