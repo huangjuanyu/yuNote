@@ -41,7 +41,32 @@ author: hjy
   }
 ```
 
-* 办法二：（自定义指令）
+* 办法二：
+
+```javascript
+  <el-input
+    v-model='count'
+    @input="count = handleInput(value)"
+  />
+
+  ...
+
+  handleInput(value){
+    //先把非数字的都替换掉，除了数字和.
+    value = value.replace(/[^\d.]/g,"");
+    //保证只有出现一个.而没有多个.
+    value = value.replace(/\.{2,}/g,".");
+    //必须保证第一个为数字而不是.
+    value = value.replace(/^\./g,"");
+    //保证.只出现一次，而不能出现两次以上
+    value = value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+    //只能输入四个小数
+    value =  value.replace(/^(\-)*(\d+)\.(\d{4}).*$/,'$1$2.$3');
+    return value
+  }
+```
+
+* 办法三：（自定义指令）
 
 ```javascript
   <el-input
