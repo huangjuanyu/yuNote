@@ -30,7 +30,7 @@ author: hjy
 ```javascript
   <el-input
     v-model='count'
-    oninput="value=value.replace(/\D/g,'')"
+    @input="value=value.replace(/\D/g,'')"
     @blur="handleBlur"
   />
 
@@ -46,12 +46,14 @@ author: hjy
 ```javascript
   <el-input
     v-model='count'
-    @input="count = handleInput(value)"
+    @input="count = handleInput($event)"
   />
 
   ...
 
   handleInput(value){
+    // 解决中文输入法下输入。问题
+    value = value.replace('。', ".");
     //先把非数字的都替换掉，除了数字和.
     value = value.replace(/[^\d.]/g,"");
     //保证只有出现一个.而没有多个.
